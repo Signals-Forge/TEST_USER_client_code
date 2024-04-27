@@ -52,7 +52,7 @@ on:
 
 env:
   PROJECT_ID: naturevive-a8549 # TODO: update Google Cloud project id
-  SERVICE: testuser # TODO: update Cloud Run service name
+  SERVICE: testuser1 # TODO: update Cloud Run service name
   REGION: asia-south1 # TODO: update Cloud Run service region
 
 jobs:
