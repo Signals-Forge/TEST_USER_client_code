@@ -20,7 +20,7 @@ type Payload struct {
 }
 
 func main() {
-	http.HandleFunc("/start-client", startClientHandler)
+    http.HandleFunc("/start-client", startClientHandler)
     port := os.Getenv("PORT") 
     if port == "" {
         port = "8080"
