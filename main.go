@@ -67,11 +67,13 @@ func startClientHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("DO REQUEST")
     resp, err := client.Do(req)
     if err != nil {
-		fmt.Println("START CLIENT HANDLER 4", err)
+		fmt.Println("I FAILED")		
+		fmt.Println("START CLIENT HANDLER 4", err.Error())
         return
-    }
+    }	
     defer resp.Body.Close()
 
+	fmt.Println("Should I start?")
     //c.Status(http.StatusOK)
 	reader := bufio.NewReader(resp.Body)
 
