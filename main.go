@@ -1,12 +1,12 @@
 package main
 
 import (
-	"bufio"	
+	"bufio"
 	"encoding/json"
 	"fmt"
-	"io"	
+	"io"
 	"net/http"
-
+	"os"
 )
 
 type RandomData struct {
@@ -21,8 +21,11 @@ type Payload struct {
 
 func main() {
 	http.HandleFunc("/start-client", startClientHandler)
-	fmt.Println("Server listening on port 8003")
-	http.ListenAndServe(":8003", nil)
+    port := os.Getenv("PORT") 
+    if port == "" {
+        port = "8080"
+    }
+	http.ListenAndServe(fmt.Sprintf(":%s", port) , nil)
 }
 
 func startClientHandler(w http.ResponseWriter, r *http.Request) {
