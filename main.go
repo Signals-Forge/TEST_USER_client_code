@@ -51,17 +51,20 @@ func startClientHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Client start request received")
 
 	//START CONNECTION
+	fmt.Println("Start connection")
 	req, err := http.NewRequest("GET", payload.URL, nil)
     if err != nil {
 		fmt.Println("START CLIENT HANDLER 3")
         return
     }
 
+	fmt.Println("Set Authorization")
     // Set the Authorization header
     req.Header.Set("Authorization", payload.APIKey)
 
     // Make the request
     client := &http.Client{}
+	fmt.Println("DO REQUEST")
     resp, err := client.Do(req)
     if err != nil {
 		fmt.Println("START CLIENT HANDLER 4", err)
