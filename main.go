@@ -21,6 +21,7 @@ type Payload struct {
 
 func main() {
     http.HandleFunc("/start-client", startClientHandler)
+	fmt.Println("Starting server")
     port := os.Getenv("PORT") 
     if port == "" {
         port = "8080"
@@ -48,17 +49,13 @@ func startClientHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Send a success response
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "Client start request received")
 
 	//START CONNECTION
-	fmt.Println("Start connection")
 	req, err := http.NewRequest("GET", payload.URL, nil)
     if err != nil {
-		fmt.Println("START CLIENT HANDLER 3")
         return
     }
 
-	fmt.Println("Set Authorization")
     // Set the Authorization header
     req.Header.Set("Authorization", payload.APIKey)
 
@@ -67,7 +64,6 @@ func startClientHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("DO REQUEST")
     resp, err := client.Do(req)
     if err != nil {
-		fmt.Println("I FAILED")		
 		fmt.Println("START CLIENT HANDLER 4", err.Error())
         return
     }	
@@ -80,7 +76,6 @@ func startClientHandler(w http.ResponseWriter, r *http.Request) {
 	for {
 		line, err := reader.ReadString('\n')
 		if err != nil && err != io.EOF { // Handle errors (but not EOF)
-			fmt.Println("START CLIENT HANDLER 7")
 			fmt.Println(err)
 			return
 		}
