@@ -76,8 +76,8 @@ jobs:
           service_account: '${{ secrets.SA_EMAIL }}' # e.g. - my-service-account@my-project.iam.gserviceaccount.com
 
       - name: Deploy to Cloud Run
-        id: deploy
-        uses: google-github-actions/deploy-cloudrun@v0
+        id: deploy                      
+        uses: google-github-actions/deploy-cloudrun@v2.4.0
         with:
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
